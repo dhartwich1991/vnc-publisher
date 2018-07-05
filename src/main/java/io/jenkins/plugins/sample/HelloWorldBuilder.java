@@ -14,6 +14,7 @@ import org.kohsuke.stapler.QueryParameter;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+
 import jenkins.tasks.SimpleBuildStep;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundSetter;
@@ -43,6 +44,8 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
 
     @Override
     public void perform(Run<?, ?> run, FilePath workspace, Launcher launcher, TaskListener listener) throws InterruptedException, IOException {
+//        ReportVncLinkAction reportVncLinkAction = new ReportVncLinkAction();
+        run.addAction(new ReportVncAction());
         if (useFrench) {
             listener.getLogger().println("Bonjour, " + name + "!");
         } else {
